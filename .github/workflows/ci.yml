@@ -7,8 +7,8 @@ on:
       - '*'
       - '**/*'
   workflow_dispatch:
-    input:
-      failTest:
+    inputs:
+      fail:
         type: boolean
         description: Flag to fail the test
 
@@ -27,4 +27,4 @@ jobs:
           cache: maven
 
       - name: Build with Maven
-        run: mvn clean verify -T4 -DfailTest=${{ github.event.inputs.failTest }}
+        run: mvn clean verify -T4 -DfailTest=${{ github.event.inputs.fail }}
