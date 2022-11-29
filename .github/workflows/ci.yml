@@ -3,13 +3,17 @@ name: Build with Maven
 on:
   push:
     branches:
-      - !main
+      - '!master'
+      - '*'
+      - '**/*'
+
 jobs:
-  publish:
+  build:
     runs-on: ubuntu-20.04
     steps:
       - name: Check out code
         uses: actions/checkout@v3
+
       - name: Set up Java environment
         uses: actions/setup-java@v3
         with:
