@@ -10,6 +10,12 @@
 
     <artifactId>community-hub-extension-example</artifactId>
     <packaging>jar</packaging>
+    <version>1.0.0-SNAPSHOT</version>
+
+    <name>community-hub-extension-example</name>
+    <description>Example of a Camunda Community Extension produced by CI/CD of the HUB.</description>
+    <url>https://github.com/camunda-community-hub/community-hub-extension-example</url>
+
     <dependencies>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
@@ -20,7 +26,146 @@
         <dependency>
             <groupId>org.assertj</groupId>
             <artifactId>assertj-core</artifactId>
-            <version>3.22.0</version>
+            <version>3.23.1</version>
         </dependency>
     </dependencies>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.jacoco</groupId>
+                    <artifactId>jacoco-maven-plugin</artifactId>
+                    <version>0.8.8</version>
+                    <executions>
+                        <execution>
+                            <id>pre-unit-test</id>
+                            <phase>initialize</phase>
+                            <goals>
+                                <goal>prepare-agent</goal>
+                            </goals>
+                            <configuration>
+                                <destFile>${project.build.directory}/coverage-reports/jacoco-ut.exec</destFile>
+                                <propertyName>surefireArgLine</propertyName>
+                            </configuration>
+                        </execution>
+                        <execution>
+                            <id>post-unit-test</id>
+                            <phase>test</phase>
+                            <goals>
+                                <goal>report</goal>
+                            </goals>
+                            <configuration>
+                                <dataFile>${project.build.directory}/coverage-reports/jacoco-ut.exec</dataFile>
+                                <outputDirectory>${project.reporting.outputDirectory}/jacoco-ut</outputDirectory>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>2.22.2</version>
+                    <configuration>
+                        <useSystemClassLoader>false</useSystemClassLoader>
+                        <runOrder>random</runOrder>
+                        <failIfNoTests>true</failIfNoTests>
+                        <argLine>-Djava.awt.headless=true @{surefireArgLine} -XX:+StartAttachListener</argLine>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.10.1</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-clean-plugin</artifactId>
+                    <version>3.2.0</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>3.3.0</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-enforcer-plugin</artifactId>
+                    <version>3.0.0</version>
+                    <executions>
+                        <execution>
+                            <id>enforce-maven</id>
+                            <goals>
+                                <goal>enforce</goal>
+                            </goals>
+                            <configuration>
+                                <rules>
+                                    <requireMavenVersion>
+                                        <version>3.6.0</version>
+                                    </requireMavenVersion>
+                                    <requireJavaVersion>
+                                        <version>11</version>
+                                    </requireJavaVersion>
+                                </rules>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-deploy-plugin</artifactId>
+                    <version>3.0.0</version>
+                    <configuration>
+                        <skip>true</skip>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.sonatype.plugins</groupId>
+                    <artifactId>nexus-staging-maven-plugin</artifactId>
+                    <version>1.6.13</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+        <plugins>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <scm>
+        <connection>scm:git:git@github.com:camunda-community-hub/community-hub-extension-example.git</connection>
+        <url>scm:git:git@github.com:camunda-community-hub/community-hub-extension-example.git</url>
+        <developerConnection>scm:git:git@github.com:camunda-community-hub/community-hub-extension-example.git</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
+
+    <developers>
+        <developer>
+            <id>zambrovski</id>
+            <name>Simon Zambrovski</name>
+            <email>simon.zambrovski@holisticon.de</email>
+            <organization>Holisticon AG</organization>
+            <organizationUrl>https://www.holisticon.de</organizationUrl>
+        </developer>
+    </developers>
 </project>
