@@ -16,6 +16,11 @@
     <description>Example of a Camunda Community Extension produced by CI/CD of the HUB.</description>
     <url>https://github.com/camunda-community-hub/community-hub-extension-example</url>
 
+    <properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
