@@ -1,0 +1,14 @@
+changelog:
+  sections:
+    - title: ":rocket: Enhancements & Features"
+      labels: [ "feature", "enhancement", "documentation", "accessibility" ]
+    - title: ":bug: Bug Fixes"
+      labels: [ "bug", "security" ]
+    - title: ":hammer_and_wrench: Chore"
+      labels: [ "chore", "cleanup" ]
+  issues:
+    exclude:
+      labels: [ "question", "duplicate", "invalid" ]
+  contributors:
+    exclude:
+      names: [ "dependabot[bot]", "codacy-badger" ]
