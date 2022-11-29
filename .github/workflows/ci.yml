@@ -3,7 +3,10 @@ name: Build with Maven
 on:
   push:
     branches:
-      - !main
+      - '!master'
+      - '*'
+      - '**/*'
+
 jobs:
   publish:
     runs-on: ubuntu-20.04
