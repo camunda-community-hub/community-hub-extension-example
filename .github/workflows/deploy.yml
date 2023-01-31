@@ -30,8 +30,7 @@ jobs:
           gpg-passphrase: MAVEN_CENTRAL_GPG_PASSPHRASE
 
       - name: Deploy SNAPSHOT / Release
-        # uses: camunda-community-hub/community-action-maven-release@main
-        uses: holunda-io/community-action-maven-release@unit_reports_on_no_test
+        uses: camunda-community-hub/community-action-maven-release@main
         with:
           release-version: ${{ github.event.release.tag_name }}
           release-profile: community-action-maven-release
