@@ -9,7 +9,7 @@
 
     <artifactId>community-hub-extension-example</artifactId>
     <packaging>jar</packaging>
-    <version>0.0.9-SNAPSHOT</version>
+    <version>0.0.10-SNAPSHOT</version>
 
     <name>community-hub-extension-example</name>
     <description>Example of a Camunda Community Extension produced by CI/CD of the HUB.</description>
